@@ -35,7 +35,7 @@
 
 	<developers>
 		<developer>
-			<id>...</id>
+			<id>adelbene</id>
 			<name>Andrea Del Bene</name>
 			<email>an.delbene@gmail.com</email>
 		</developer>
@@ -51,17 +51,16 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.3.3</version>
+			<version>2.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>2.2.4</version>
+			<version>2.3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

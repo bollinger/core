@@ -7,18 +7,21 @@
 package org.wicketstuff.html5;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.IPackageResourceGuard;
+import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.util.crypt.CharEncoding;
 import org.wicketstuff.html5.eventsource.EventSourceDemo;
-import org.wicketstuff.html5.eventsource.EventSourceResource;
 import org.wicketstuff.html5.eventsource.EventSourceResourceReference;
 import org.wicketstuff.html5.fileapi.FileApiPage;
 import org.wicketstuff.html5.geolocation.GeolocationDemo;
+import org.wicketstuff.html5.image.InlineImagePage;
 import org.wicketstuff.html5.markup.html.ProgressDemo;
 import org.wicketstuff.html5.markup.html.form.NumberFieldDemo;
 import org.wicketstuff.html5.markup.html.form.RangeTextFieldDemo;
-import org.wicketstuff.html5.media.audio.AudioDemo;
-import org.wicketstuff.html5.media.video.VideoDemo;
+import org.wicketstuff.html5.media.webrtc.WebRTCDemo;
+import org.wicketstuff.html5.media.webvtt.WebVttDemo;
+import org.wicketstuff.html5.shape.ShapeCircleExamplePage;
 
 /**
  * 
@@ -40,8 +43,8 @@ public class WicketApplication extends WebApplication
 
 		getMarkupSettings().setDefaultMarkupEncoding(CharEncoding.UTF_8);
 
-		mountPage("/audio", AudioDemo.class);
-		mountPage("/video", VideoDemo.class);
+		mountPage("/webrtc", WebRTCDemo.class);
+		mountPage("/webvtt", WebVttDemo.class);
 		mountPage("/geolocation", GeolocationDemo.class);
 		mountPage("/form-range", RangeTextFieldDemo.class);
 		mountPage("/form-number", NumberFieldDemo.class);
@@ -49,6 +52,15 @@ public class WicketApplication extends WebApplication
 		mountPage("/progress", ProgressDemo.class);
 
 		mountPage("/eventSource", EventSourceDemo.class);
+		mountPage("/shape", ShapeCircleExamplePage.class);
+		mountPage("/inlineimage", InlineImagePage.class);
 		mountResource("/eventSourceResource", new EventSourceResourceReference());
+
+		IPackageResourceGuard packageResourceGuard = getResourceSettings().getPackageResourceGuard();
+		if (packageResourceGuard instanceof SecurePackageResourceGuard)
+		{
+			SecurePackageResourceGuard guard = (SecurePackageResourceGuard)packageResourceGuard;
+			guard.addPattern("+*.json");
+		}
 	}
 }

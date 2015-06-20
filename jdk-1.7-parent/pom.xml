@@ -20,10 +20,10 @@
 
 	<modules>
 		<module>lightbox2-parent</module>
-        <module>jqplot-parent</module>
+		<module>jqplot-parent</module>
 		<module>annotation</module> 
 		<module>annotationeventdispatcher-parent</module>
-        <module>async-tasks-parent</module>
+		<module>async-tasks-parent</module>
 		<module>autocomplete-tagit-parent</module>
 		<module>browserid-parent</module>
 		<module>datastores-parent</module>
@@ -33,19 +33,19 @@
 		<module>gmap3-parent</module>
 		<module>googlecharts-parent</module>
 		<module>htmlcompressor-parent</module>
-		<!--<module>inmethod-grid-parent</module> Need migration to the new Tree component (wicket-extensions) -->
+		<module>inmethod-grid-parent</module>
 		<module>input-events-parent</module>
 		<module>javaee-inject-parent</module>
+		<module>jee-web-parent</module>
 		<module>jquery-parent</module>
-		<module>jslibraries</module>
-		<!--<module>jsr303-parent</module> Deprecated in favour of wicket-beanvalidation module -->
 		<module>jwicket-parent</module>
 		<module>mbeanview-parent</module>
 		<module>minis-parent</module>
 		<module>modalx-parent</module>
 		<module>objectautocomplete-parent</module>
 		<module>openlayers-parent</module>
-		<!--<module>phonebook</module> Spring dropped iBatis support in 4.x -->
+		<module>openlayers3-parent</module>
+		<module>phonebook</module>
 		<module>plugin</module>
 		<module>portlet-parent</module>
 		<module>progressbar-parent</module>
@@ -82,27 +82,18 @@
 		<module>sitemap-xml-parent</module>
 		<module>urlfragment-parent</module>
 		<module>wicketstuff-restannotations-parent</module>
-        <module>whiteboard-parent</module>
+		<module>whiteboard-parent</module>
 		<module>wicket-mount-parent</module>
-<!-- 
-Commented because its build fails
-<module>console-parent</module>
--->
+		<module>select2-parent</module>
+
+		<!--
+			Commented because its build fails
+			<module>console-parent</module>
+		-->
  
-    <!-- TODO: port these module to wicket 6 -->
-
-        <!-- <module>calendarviews-parent</module> -->
-        <!-- <module>client-and-server-validation</module> -->
-		<!-- <module>eidogo-parent</module> -->
-
-		<!-- <module>theme-parent</module> -->
-		<!-- <module>mootools-meiomask-parent</module> -->
-		
-		<!-- <module>yav-parent</module> -->
-		<!-- <module>maven-support</module> -->
-
-		<module>wicketstuff-wicket7</module>
 		<module>wicketstuff-glassfish4-integration</module>
+		<module>serializer-fast2</module>
+		<module>wicket-foundation</module>
 	</modules>
 
 	<build>

@@ -68,7 +68,7 @@ public interface IObjectSerialDeserial<T>{
 
 <br/>
 The main module comes with class `TextualObjectSerialDeserial` which implements both `IWebSerialDeserial` and `IObjectSerialDeserial` and that can be used as base class to implement serials/deserials that work with a textual MIME type and that need to know which charset encoding should be used.<br/>
-As JSON is de-facto standard format for REST API, the project comes also with a ready-to-use resource (`GsonRestResource`) and a serial/deserial (`GsonSerialDeserial`) that work with JSON format (both inside module 'restannotations-json'). These classes use [Gson](http://code.google.com/p/google-gson/) as Json library. Resource `PersonsRestResource` in the example module is based on `GsonRestResource`.
+As JSON is de-facto standard format for REST API, the project comes also a ready-to-use resources (`GsonRestResource`) and two serials/deserials (`GsonSerialDeserial`, `JacksonObjectSerialDeserial`) that work with JSON format (both inside module 'restannotations-json'). The `GsonRestResource` and `GsonSerialDeserial` use [Gson](http://code.google.com/p/google-gson/) as Json library while `JacksonObjectSerialDeserial` is based on [Jackson]( https://github.com/FasterXML/jackson). Resource `PersonsRestResource` in the example module is based on `GsonRestResource`.
 
 Mounting resources to a specific path
 ---------
@@ -222,9 +222,43 @@ Every URL segment can contain multiple path parameters and each of them can spec
 As you can see in the code above, the syntax to write a regular expression is _{variableName:regExp}_.
 
 
+Response status code
+---------
+To explicitly set the status code of the current response we can simply use `AbstractRestResource` method `setResponseStatusCode(int statusCode)`:
+
+````java
+	@MethodMapping(value = "/customer/{p1}/order/{p2}", produces = RestMimeTypes.PLAIN_TEXT)
+	public String mappedMethod(@PathParam("p2") String textParam, @PathParam("p1") int intParam) {
+		//do some stuff...
+		
+		setResponseStatusCode(201);
+		return result;
+	}
+````
+ 
+
+Exception handling
+---------
+During the invocation of a mapped method we might stumble across possible exceptions. To handle this kind of exceptions we can override method `handleException`:
+
+````java
+	@Override
+	protected void handleException(WebResponse response, Exception exception) {
+		
+		if(exception instanceof IOException) {		
+			//do some stuff...
+		} 
+		else
+		//do some other stuff...
+
+	}
+````
+
+The default implementation of this handler just returns 500 as response code.
+
 Validation
 ---------
-Class `AbstractRestResource` offers validation support through standard Wicket validators (i.e. implementations of interface `IValidator`). With method `registerValidator` we can "register" a specific validator assigning a unique key:  
+Class `AbstractRestResource` offers validation support through standard Wicket validators (i.e. implementations of interface `IValidator`). With method `registerValidator` we can "register" a specific validator assigning a unique key:
 
 ````java
 	@Override

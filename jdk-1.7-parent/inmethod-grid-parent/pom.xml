@@ -37,16 +37,6 @@
 		</license>
 	</licenses>
 
-	<issueManagement>
-		<system>jira</system>
-		<url>http://issues.apache.org/jira/browse/WICKET</url>
-	</issueManagement>
-
-	<ciManagement>
-		<system>bamboo</system>
-		<url>http://wicketstuff.org/bamboo</url>
-	</ciManagement>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -64,16 +54,20 @@
 			<artifactId>wicket-extensions</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.wicketstuff</groupId>
+			<artifactId>wicket15-tree</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- JUNIT DEPENDENCY FOR TESTING -->

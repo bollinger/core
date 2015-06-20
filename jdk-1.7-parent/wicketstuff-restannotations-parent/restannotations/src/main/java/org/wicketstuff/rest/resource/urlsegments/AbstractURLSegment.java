@@ -28,6 +28,7 @@ import org.apache.wicket.util.parse.metapattern.MetaPattern;
 import org.apache.wicket.util.parse.metapattern.OptionalMetaPattern;
 import org.apache.wicket.util.parse.metapattern.parsers.VariableAssignmentParser;
 import org.apache.wicket.util.string.StringValue;
+import org.wicketstuff.rest.resource.urlsegments.visitor.ISegementElement;
 
 /**
  * Base class to contain the informations of the segments that compose the URL used to map a method.
@@ -36,12 +37,9 @@ import org.apache.wicket.util.string.StringValue;
  * @author andrea del bene
  * 
  */
-public abstract class AbstractURLSegment extends StringValue
+public abstract class AbstractURLSegment extends StringValue implements ISegementElement
 {
-	/**
-         * 
-         */
-        private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
     
 	/** MetaPattern to identify the content of a regular expression. */
 	public static final MetaPattern REGEXP_BODY = new MetaPattern("([^\\}\\{]*|(\\{[\\d]+\\}))*");
@@ -88,17 +86,6 @@ public abstract class AbstractURLSegment extends StringValue
 	}
 
 	/**
-	 * This method checks if a given string is compatible with the current segment.
-	 * 
-	 * @param segment
-	 * @return an integer positive value if the string in input is compatible with the current
-	 *         segment, 0 otherwise. Segments of type FixedURLSegment have the priority over the
-	 *         other types of segment. That's why positive matches has a score of 2 if the method is
-	 *         invoked on a FixedURLSegment, while it returns 1 for the other types of segment.
-	 */
-	public abstract int calculateScore(String segment);
-
-	/**
 	 * Get the segment value without optional matrix parameters. For example given the following
 	 * value 'segment;parm=value', the function returns 'segment'.
 	 * 
@@ -137,17 +124,6 @@ public abstract class AbstractURLSegment extends StringValue
 
 		return matrixParameters;
 	}
-
-	/**
-	 * With this method every segment contributes to extract path parameters from the current
-	 * request URL.
-	 * 
-	 * @param variables
-	 *            the Map object containing the extracted parameters.
-	 * @param segment
-	 *            the value of the current segment.
-	 */
-	public abstract void populatePathVariables(Map<String, String> variables, String segment);
 
 	/**
 	 * Getter method for segment MetaPattern.
